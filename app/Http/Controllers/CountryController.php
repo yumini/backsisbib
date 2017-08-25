@@ -28,9 +28,8 @@ class CountryController extends Controller
     	$validator = Validator::make($request->all(), Country::$rules, Country::$messages);
         
         if ($validator->fails()) {
-        	return response()->json([
-          		'message' => $validator->getMessageBag()->all(), 403
-     			] );
+        	return response($validator->getMessageBag()->all(), 403
+     			)->header('Content-Type', 'application/json');
         }
         else{
         	Country::create($request->all());
@@ -44,17 +43,14 @@ class CountryController extends Controller
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), Country::$rules, Country::$messages);
-        $country_id = $request->input('country_id');
+        $country_id = $request->input('id');
         $country = Country::find($country_id);
         //$country->name = strtoupper($request->input('name'));
         if ($validator->fails()) {
-        	return response()->json([
-          		'message' => $validator->getMessageBag()->all(), 403
-     			] );
+            return response($validator->getMessageBag()->all(), 403
+            )->header('Content-Type', 'application/json');        	
         }
         else{
-        	
-        	
         	//$country->save();
         	$country->update($request->all());
         	return response()->json([
