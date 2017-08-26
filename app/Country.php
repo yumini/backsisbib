@@ -15,4 +15,9 @@ class Country extends Model
         'name.unique' => 'Nombre ya existe en la base de datos.',
         'name.min' => 'Minimo 4 caracteres'
     ];
+    
+    public function editorials()
+    {
+        return $this->hasMany('App\Editorial');
+    }
 }

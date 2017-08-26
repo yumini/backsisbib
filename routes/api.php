@@ -22,9 +22,16 @@ Route::post('/auth_login', 'UserController@login');
 
 Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('user', 'UserController@getAuthUser');
+    //Country
     Route::get('countries', 'CountryController@index');
     Route::post('countries', 'CountryController@store');
     Route::post('country/editar', 'CountryController@update');
-	Route::delete('country/{id}/eliminar', 'CountryController@delete');
+    Route::delete('country/{id}/eliminar', 'CountryController@delete');
+    //Editorial
+    Route::get('editorials', 'EditorialController@index');
+    Route::post('editorials', 'EditorialController@store');
+    Route::post('editorial/editar', 'EditorialController@update');
+    Route::delete('editorial/{id}/eliminar', 'EditorialController@delete');
+    Route::post('editorials/search', 'EditorialController@search');
 });
 
