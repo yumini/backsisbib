@@ -103,7 +103,7 @@ class EditorialController extends Controller
 
             $index++;
         }
-        //$query=$query->orderBy('name', 'asc');
+        
         return $query;
     }
 }
