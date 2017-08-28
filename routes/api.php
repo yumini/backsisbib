@@ -33,5 +33,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('editorial/editar', 'EditorialController@update');
     Route::delete('editorial/{id}/eliminar', 'EditorialController@delete');
     Route::post('editorials/search', 'EditorialController@search');
+    //Author
+    Route::get('authors', 'AuthorController@index');
+    Route::post('authors', 'AuthorController@store');
+    Route::post('author/editar', 'AuthorController@update');
+    Route::delete('author/{id}/eliminar', 'AuthorController@delete');
 });
 
