@@ -10,8 +10,8 @@ class EditorialController extends Controller
 {
     public function index()
     {
-        $editorials=Editorial::all();
-    	
+        $editorials=Editorial::with(['country'])
+    	->get();
         if (!$editorials) {
             throw new HttpException(400, "Invalid data");
         }

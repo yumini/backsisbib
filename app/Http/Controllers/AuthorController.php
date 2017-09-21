@@ -10,8 +10,8 @@ class AuthorController extends Controller
 {
     public function index()
     {
-        $authors=Author::all();
-    	
+        $authors=Author::with(['country'])
+    	->get();
         if (!$authors) {
             throw new HttpException(400, "Invalid data");
         }
