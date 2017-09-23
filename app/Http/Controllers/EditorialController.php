@@ -44,13 +44,13 @@ class EditorialController extends Controller
         $validator = Validator::make($request->all(), Editorial::$rules, Editorial::$messages);
         $editorial_id = $request->input('id');
         $editorial = Editorial::find($editorial_id);
-        //$editorial->name = strtoupper($request->input('name'));
+        
         if ($validator->fails()) {
             return response($validator->getMessageBag()->all(), 403
             )->header('Content-Type', 'application/json');        	
         }
         else{
-        	//$editorial->save();
+        	
         	$editorial->update($request->all());
         	return response()->json([
           		'message' => 'updated successfully', 200
@@ -79,7 +79,8 @@ class EditorialController extends Controller
             'country_id' => $request['country_id'],
             'name_city' => $request['city_search']
             ];
-        $editorials = $this->doSearchingQuery($constraints);
+        $editorials = $this->doSearchingQuery($constraints)
+        ->get();
         //$constraints['name'] = $request['name_search'];
         if (!$editorials) {
             throw new HttpException(400, "Invalid data");
